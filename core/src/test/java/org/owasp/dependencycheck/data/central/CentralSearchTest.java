@@ -50,7 +50,7 @@ public class CentralSearchTest extends BaseTest {
         assertEquals("Incorrect version", "3.1", ma.get(0).getVersion());
                 } catch (IOException ex) {
             //we hit a failure state on the CI
-            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Gateway Time-out"));
+            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Could not connect to MavenCentral"));
             throw ex;
         }
     }
@@ -64,7 +64,7 @@ public class CentralSearchTest extends BaseTest {
         searcher.searchSha1("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 } catch (IOException ex) {
             //we hit a failure state on the CI
-            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Gateway Time-out"));
+            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Could not connect to MavenCentral"));
             throw ex;
         }
     }
@@ -77,7 +77,7 @@ public class CentralSearchTest extends BaseTest {
             assertTrue(ma.size() > 1);
         } catch (IOException ex) {
             //we hit a failure state on the CI
-            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Gateway Time-out"));
+            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Could not connect to MavenCentral"));
             throw ex;
         }
     }

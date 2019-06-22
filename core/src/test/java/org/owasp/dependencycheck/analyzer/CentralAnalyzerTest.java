@@ -73,7 +73,7 @@ public class CentralAnalyzerTest {
             assertEquals(expectedMavenArtifacts, actualMavenArtifacts);
         } catch (IOException ex) {
             //we hit a failure state on the CI
-            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Gateway Time-out"));
+            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Could not connect to MavenCentral"));
             throw ex;
         }
     }
@@ -103,7 +103,7 @@ public class CentralAnalyzerTest {
             assertEquals(expectedMavenArtifacts, actualMavenArtifacts);
         } catch (IOException ex) {
             //we hit a failure state on the CI
-            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Gateway Time-out"));
+            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Could not connect to MavenCentral"));
             throw ex;
         }
     }
@@ -128,7 +128,7 @@ public class CentralAnalyzerTest {
             instance.fetchMavenArtifacts(dependency);
         } catch (IOException ex) {
             //we hit a failure state on the CI
-            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Gateway Time-out"));
+            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Could not connect to MavenCentral"));
             throw ex;
         }
     }
@@ -153,7 +153,7 @@ public class CentralAnalyzerTest {
             instance.fetchMavenArtifacts(dependency);
         } catch (IOException ex) {
             //we hit a failure state on the CI
-            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Gateway Time-out"));
+            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Could not connect to MavenCentral"));
             throw ex;
         }
     }
