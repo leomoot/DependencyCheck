@@ -7,14 +7,17 @@ import org.owasp.dependencycheck.data.nexus.MavenArtifact;
 
 import java.io.IOException;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import org.junit.Assume;
 
 /**
  * Created by colezlaw on 10/13/14.
  */
 public class CentralSearchTest extends BaseTest {
+
     private CentralSearch searcher;
 
     @Before
@@ -56,7 +59,13 @@ public class CentralSearchTest extends BaseTest {
     // This test should give us multiple results back from Central
     @Test
     public void testMultipleReturns() throws Exception {
-        List<MavenArtifact> ma = searcher.searchSha1("94A9CE681A42D0352B3AD22659F67835E560D107");
-        assertTrue(ma.size() > 1);
+        try {
+            List<MavenArtifact> ma = searcher.searchSha1("94A9CE681A42D0352B3AD22659F67835E560D107");
+            assertTrue(ma.size() > 1);
+        } catch (IOException ex) {
+            //we hit a failure state on the CI
+            Assume.assumeFalse(StringUtils.contains(ex.getMessage(), "Gateway Time-out"));
+            throw ex;
+        }
     }
 }
