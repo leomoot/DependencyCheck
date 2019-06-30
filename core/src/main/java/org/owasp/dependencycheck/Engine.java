@@ -1155,8 +1155,8 @@ public class Engine implements FileFilter, AutoCloseable {
         exceptions.add(throwable);
         throw new ExceptionCollection(exceptions, true);
     }
-    
-        /**
+
+    /**
      * Writes the report to the given output directory.
      *
      * @param applicationName the name of the application/project
@@ -1164,23 +1164,28 @@ public class Engine implements FileFilter, AutoCloseable {
      * file name if the format is not ALL)
      * @param format the report format (ALL, HTML, CSV, JSON, etc.)
      * @throws ReportException thrown if there is an error generating the report
+     * @deprecated use {@link #writeReports(java.lang.String, java.io.File, java.lang.String, org.owasp.dependencycheck.exception.ExceptionCollection)
      */
+    @Deprecated
     public void writeReports(String applicationName, File outputDir, String format) throws ReportException {
         writeReports(applicationName, null, null, null, outputDir, format, null);
     }
-        /**
+
+    /**
      * Writes the report to the given output directory.
      *
      * @param applicationName the name of the application/project
      * @param outputDir the path to the output directory (can include the full
      * file name if the format is not ALL)
      * @param format the report format (ALL, HTML, CSV, JSON, etc.)
-     * @param exceptions a collection of exceptions that may have occurred during the analysis
+     * @param exceptions a collection of exceptions that may have occurred
+     * during the analysis
      * @throws ReportException thrown if there is an error generating the report
      */
     public void writeReports(String applicationName, File outputDir, String format, ExceptionCollection exceptions) throws ReportException {
         writeReports(applicationName, null, null, null, outputDir, format, exceptions);
     }
+
     /**
      * Writes the report to the given output directory.
      *
@@ -1192,12 +1197,15 @@ public class Engine implements FileFilter, AutoCloseable {
      * file name if the format is not ALL)
      * @param format the report format (ALL, HTML, CSV, JSON, etc.)
      * @throws ReportException thrown if there is an error generating the report
+     * @deprecated use {@link #writeReports(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.io.File, java.lang.String, org.owasp.dependencycheck.exception.ExceptionCollection)
      */
+    @Deprecated
     public synchronized void writeReports(String applicationName, @Nullable final String groupId,
             @Nullable final String artifactId, @Nullable final String version,
             @NotNull final File outputDir, String format) throws ReportException {
         writeReports(applicationName, groupId, artifactId, version, outputDir, format, null);
     }
+
     /**
      * Writes the report to the given output directory.
      *
@@ -1208,7 +1216,8 @@ public class Engine implements FileFilter, AutoCloseable {
      * @param outputDir the path to the output directory (can include the full
      * file name if the format is not ALL)
      * @param format the report format (ALL, HTML, CSV, JSON, etc.)
-     * @param exceptions a collection of exceptions that may have occurred during the analysis
+     * @param exceptions a collection of exceptions that may have occurred
+     * during the analysis
      * @throws ReportException thrown if there is an error generating the report
      */
     public synchronized void writeReports(String applicationName, @Nullable final String groupId,

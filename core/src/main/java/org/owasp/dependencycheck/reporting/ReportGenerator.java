@@ -251,16 +251,16 @@ public class ReportGenerator {
         ctxt.put("version", settings.getString(Settings.KEYS.APPLICATION_VERSION, "Unknown"));
         ctxt.put("settings", settings);
         if (version != null) {
-            context.put("applicationVersion", version);
+            ctxt.put("applicationVersion", version);
         }
         if (artifactID != null) {
-            context.put("artifactID", artifactID);
+            ctxt.put("artifactID", artifactID);
         }
         if (groupID != null) {
-            context.put("groupID", groupID);
+            ctxt.put("groupID", groupID);
         }
         if (exceptions != null) {
-            context.put("exceptions", exceptions);
+            ctxt.put("exceptions", exceptions.getExceptions());
         }
         return ctxt;
     }
