@@ -796,7 +796,7 @@ public final class CliParser {
      * @return true if the disableNexus command line argument was specified;
      * otherwise false
      */
-    public boolean isNexusEnabled() {
+    public Boolean isNexusEnabled() {
         return (line != null && line.hasOption(ARGUMENT.ENABLE_NEXUS)) ? true : null;
     }
 
