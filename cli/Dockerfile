@@ -15,14 +15,14 @@ ENV JAVA_OPTS=-Danalyzer.assembly.dotnet.path=/usr/bin/dotnet -Danalyzer.bundle.
 
 COPY --from=jlink /jlinked /opt/jdk/
 
-RUN apk update && \
-    apk add --no-cache ruby ruby-rdoc curl tar                                                       && \
-    gem install bundle-audit                                                                         && \
-    bundle audit update
-
 ADD target/dependency-check-${VERSION}-release.zip /
 
-RUN unzip dependency-check-${VERSION}-release.zip -d /usr/share/                                     && \
+RUN apk update                                                                                       && \
+    apk add --no-cache --virtual .build-deps curl tar                                                && \
+    apk add --no-cache ruby ruby-rdoc                                                                && \
+    gem install bundle-audit                                                                         && \
+    bundle audit update                                                                              && \
+    unzip dependency-check-${VERSION}-release.zip -d /usr/share/                                     && \
     rm dependency-check-${VERSION}-release.zip                                                       && \
     cd /usr/share/dependency-check/plugins                                                           && \
     curl -Os "https://jdbc.postgresql.org/download/postgresql-${POSTGRES_DRIVER_VERSION}.jar"        && \
@@ -33,7 +33,7 @@ RUN unzip dependency-check-${VERSION}-release.zip -d /usr/share/                
     chown -R ${user}:${user} /usr/share/dependency-check                                             && \
     mkdir /report                                                                                    && \
     chown -R ${user}:${user} /report                                                                 && \
-    apk del curl tar
+    apk del .build-deps
     
 USER ${user}
 
